@@ -1,0 +1,2 @@
+psutil==5.3.1
+pypiwin32==220
