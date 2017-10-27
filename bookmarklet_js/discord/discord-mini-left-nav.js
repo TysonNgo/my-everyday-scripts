@@ -1,5 +1,7 @@
 javascript:(function(){ 
-	var style = document.createElement("style"); 
+	try{document.getElementById("discord_left_nav").remove(); return;}catch(err){}
+	var style = document.createElement("style");
+	style.id = "discord_left_nav";
 	var channelClass = document.querySelectorAll("div[class^=channel]")[0].classList[0];
 	var css = document.createTextNode(`
 		.${channelClass}, .guilds-wrapper,
