@@ -9,6 +9,12 @@ javascript:(function(){
 			transition: width 0.5s, height 0.5s, padding 0.5s, background-size 0.5s;
 			transition-timing-function: ease-out;
 		}
+		.guild.unread .guild-inner{
+			background:#8a8e94 !important;
+		}
+		.guild.unread .avatar-small{
+			opacity: 0.5;
+		}
 		.guilds-wrapper .guilds{
 			padding-left: 5px;
 		}
