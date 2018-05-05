@@ -1,4 +1,5 @@
-javascript:(function(){ 
+javascript:(function(){
+	if (window.location.host !== 'discordapp.com') return alert('this script is used on "discordapp.com"');
 	/*get token*/
 	var guild = prompt("Enter server id of server to mark as read");
 	if (!guild){return};

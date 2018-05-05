@@ -1,4 +1,5 @@
 javascript:(function(){
+	if (window.location.host !== 'discordapp.com') return alert('this script is used on "discordapp.com"');
 	try{document.getElementById("perma-icon").remove(); return;}catch(err){}
     var link = document.createElement("link");
     link.id = "perma-icon";

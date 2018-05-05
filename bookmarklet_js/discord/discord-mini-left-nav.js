@@ -1,4 +1,5 @@
 javascript:(function(){ 
+  if (window.location.host !== 'discordapp.com') return alert('this script is used on "discordapp.com"');
 	try{document.getElementById("discord_left_nav").remove(); return;}catch(err){}
 	var style = document.createElement("style");
 	style.id = "discord_left_nav";
