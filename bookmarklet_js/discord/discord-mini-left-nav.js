@@ -1,6 +1,11 @@
 javascript:(function(){ 
   if (window.location.host !== 'discordapp.com') return alert('this script is used on "discordapp.com"');
-	try{document.getElementById("discord_left_nav").remove(); return;}catch(err){}
+	try{
+		document.getElementById("discord_left_nav").remove();
+		document.getElementById("discord_left_nav_toggle").remove();
+		return;}
+	catch(err){}
+	/* injected css */
 	var style = document.createElement("style");
 	style.id = "discord_left_nav";
 	var channelClass = document.querySelectorAll("div[class^=channel]")[0].classList[0];
@@ -59,5 +64,27 @@ javascript:(function(){
 			max-width: 100%;
 			height: auto;
 		}`); style.appendChild(css);
-	document.getElementsByTagName("head")[0].appendChild(style); 
+	document.getElementsByTagName("head")[0].appendChild(style);
+	/* button to toggle style */
+	var toggle = document.createElement("button");
+	toggle.onclick = function(){
+		var s = document.getElementById(style.id);
+		if (s){
+			s.remove()
+		} else {
+			document.getElementsByTagName("head")[0].appendChild(style);
+		}
+	}
+	toggle.onmouseover = function(){ this.style.opacity = 1; }
+	toggle.onmouseout = function(){ this.style.opacity = 0; }
+	toggle.id = "discord_left_nav_toggle";
+	toggle.textContent = "⬅";
+	toggle.style.position = "fixed";
+	toggle.style.width = "35px";
+	toggle.style.height = "35px";
+	toggle.style.top = 0;
+	toggle.style.left = 0;
+	toggle.style.opacity = 0;
+	toggle.style.zIndex = 100;
+	document.body.insertBefore(toggle, document.body.childNodes[0]);
 })();
