@@ -70,13 +70,13 @@ javascript:(function(){
 	toggle.onclick = function(){
 		var s = document.getElementById(style.id);
 		if (s){
-			s.remove()
+			s.remove();
 		} else {
 			document.getElementsByTagName("head")[0].appendChild(style);
 		}
-	}
-	toggle.onmouseover = function(){ this.style.opacity = 1; }
-	toggle.onmouseout = function(){ this.style.opacity = 0; }
+	};
+	toggle.onmouseover = function(){ this.style.opacity = 1; };
+	toggle.onmouseout = function(){ this.style.opacity = 0; };
 	toggle.id = "discord_left_nav_toggle";
 	toggle.textContent = "⬅";
 	toggle.style.position = "fixed";
