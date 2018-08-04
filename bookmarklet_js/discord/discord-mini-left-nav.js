@@ -9,7 +9,9 @@ javascript:(function(){
 	var style = document.createElement("style");
 	style.id = "discord_left_nav";
 	/* the container for the guild channels */
-	var channelClass = document.querySelectorAll("div[class^=channel]")[0].classList[0];
+	var channelClass = document.querySelector("div[class^=channel]").classList[0];
+	var guildsWrapper = document.querySelector("div[class^=guildsWrapper]").classList[0];
+	var guildInner = document.querySelector("div[class^=guildInner]").classList[0];
 	var css = document.createTextNode(`
 		/*
 		  shrinking/growing animation for left nav elements
@@ -18,37 +20,39 @@ javascript:(function(){
 		  - guild images
 		*/
 			.${channelClass},
-			.guilds-wrapper,
-			.guild-inner a, .guild-icon, .guild, .guilds{ 
+			.${guildsWrapper},
+			.${guildInner} a,
+			div[class^=icon],
+			div[class^=guild]{
 				transition: width 0.5s, height 0.5s, padding 0.5s, background-size 0.5s;
 				transition-timing-function: ease-out;
 			}
 
 		/* unread guild icon becomes white so it is more visible when the nav is small */
-			.guild.unread .guild-inner{
+			div[class*=unread] .${guildInner}{
 				background:#8a8e94 !important;
 			}
-			.guild.unread a{
+			div[class*=unread] a{
 				opacity: 0.5;
 			}
 
 		/* change guild container padding */
-			.guilds-wrapper .guilds{
+			.${guildsWrapper} div[class^=guilds]{
 				padding-left: 5px;
 			}
-			.guilds-wrapper:hover .guilds{
+			.${guildsWrapper}:hover div[class^=guilds]{
 				padding-left: 10px;
 			}
 
 		/* changes guild icon size */
-			.guilds-wrapper .guilds .guild .guild-inner a,
-			.guilds-wrapper .guilds .guild .guild-inner a .guild-icon,
-			.guilds-wrapper .guilds .guild{
+			div[class^=guild-] .${guildInner} a,
+			.${guildInner} a div[class^=icon],
+			div[class^=guild-]{
 				width: 20px; height: 20px;
 			}
-			.guilds-wrapper:hover .guilds .guild .guild-inner a,
-			.guilds-wrapper:hover .guilds .guild .guild-inner a .guild-icon,
-			.guilds-wrapper:hover .guilds .guild{
+			.${guildsWrapper}:hover .${guildInner} a,
+			.${guildsWrapper}:hover .${guildInner} a div[class^=icon],
+			.${guildsWrapper}:hover div[class^=guild-]{
 				width: 50px; height: 50px;
 			}
 
@@ -59,10 +63,10 @@ javascript:(function(){
 
 		/* left nav resizers */
 			/* guilds container */
-				.guilds-wrapper{
+				.${guildsWrapper}{
 					width: 30px;
 				}
-				.guilds-wrapper:hover{
+				.${guildsWrapper}:hover{
 					width: 70px;
 				}
 			/* channels container */
@@ -74,27 +78,28 @@ javascript:(function(){
 				}
 
 		/* hides blocked messages */
-			.message-group-blocked, .divider > span{
+			div[class^=messageGroupBlocked], div[class^=divider] > span{
 				display: none; padding: 0;
 			}
 			.message-group{
 				border: 0;
 			}
-			.chat .divider.divider-red > div{
-				background: none;
+			div[class^=divider] > div{
+				background: none !important;
 			}
 
 		/* removes N messages unread notif */
-			.chat .new-messages-bar{
+			div[class^=newMessagesBar]{
 				display:none;
 			}
 
 		/* more responsive image embed */
-			.accessory a[class^=image],
-			.accessory img{
-				max-width: 100%;
+			a[class^=imageWrapper],
+			a[class^=imageWrapper] img,
+			div[class^=containerCozy] div[class^=embed]{
+				max-width: 100% !important;
 			}
-			.accessory img{
+			a[class^=imageWrapper] img{
 				height: auto !important;
 			}
 
