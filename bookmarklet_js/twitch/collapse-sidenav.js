@@ -7,13 +7,15 @@ javascript:(function(){
 	button.style.right = '-1em';
 	button.style.top = 0;
 	button.style.zIndex = 1000;
-	button.onclick = function(){
+	function toggleNav(){
 		sideNav.style.width = sideNav.style.width ? '' : 0;
 		sideNav.focus();
 	};
+	button.onclick = toggleNav;
 	button.id = 'button-qweasdzxc';
 	var style = document.createElement('style');
 	style.innerText = '#button-qweasdzxc:focus{outline:0;}';
 	sideNav.appendChild(style);
 	sideNav.appendChild(button);
+	toggleNav();
 })()
