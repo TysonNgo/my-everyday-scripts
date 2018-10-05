@@ -73,11 +73,11 @@ javascript:(function(){
 				.${channelClass}{
 					width: 30px;
 					opacity: 0.93;
+					z-index: 1000;
 				}
 				.${channelClass}:hover{
 					width: 240px;
 					margin-right: -210px;
-					z-index: 1000;
 				}
 
 		/* hides blocked messages */
