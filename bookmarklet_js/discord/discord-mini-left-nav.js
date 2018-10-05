@@ -24,7 +24,7 @@ javascript:(function(){
 			.${guildInner} a,
 			div[class^=icon],
 			div[class^=guild]{
-				transition: width 0.5s, height 0.5s, padding 0.5s, background-size 0.5s;
+				transition: width 0.5s, height 0.5s, padding 0.5s, margin 0.5s, background-size 0.5s;
 				transition-timing-function: ease-out;
 			}
 
@@ -72,9 +72,12 @@ javascript:(function(){
 			/* channels container */
 				.${channelClass}{
 					width: 30px;
+					opacity: 0.93;
 				}
 				.${channelClass}:hover{
 					width: 240px;
+					margin-right: -210px;
+					z-index: 1000;
 				}
 
 		/* hides blocked messages */
