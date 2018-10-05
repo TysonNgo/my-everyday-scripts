@@ -24,7 +24,7 @@ javascript:(function(){
 			.${guildInner} a,
 			div[class^=icon],
 			div[class^=guild]{
-				transition: width 0.5s, height 0.5s, padding 0.5s, background-size 0.5s;
+				transition: width 0.5s, height 0.5s, padding 0.5s, margin 0.5s, background-size 0.5s;
 				transition-timing-function: ease-out;
 			}
 
@@ -65,16 +65,21 @@ javascript:(function(){
 			/* guilds container */
 				.${guildsWrapper}{
 					width: 30px;
+					z-index: 1001;
 				}
 				.${guildsWrapper}:hover{
 					width: 70px;
+					margin-right: -40px;
 				}
 			/* channels container */
 				.${channelClass}{
 					width: 30px;
+					opacity: 0.93;
+					z-index: 1000;
 				}
 				.${channelClass}:hover{
 					width: 240px;
+					margin-right: -210px;
 				}
 
 		/* hides blocked messages */
@@ -125,6 +130,6 @@ javascript:(function(){
 	toggle.style.top = 0;
 	toggle.style.left = 0;
 	toggle.style.opacity = 0;
-	toggle.style.zIndex = 100;
+	toggle.style.zIndex = 10000;
 	document.body.insertBefore(toggle, document.body.childNodes[0]);
 })();
