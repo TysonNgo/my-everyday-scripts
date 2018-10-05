@@ -130,6 +130,6 @@ javascript:(function(){
 	toggle.style.top = 0;
 	toggle.style.left = 0;
 	toggle.style.opacity = 0;
-	toggle.style.zIndex = 100;
+	toggle.style.zIndex = 10000;
 	document.body.insertBefore(toggle, document.body.childNodes[0]);
 })();
