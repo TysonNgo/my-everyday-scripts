@@ -65,9 +65,11 @@ javascript:(function(){
 			/* guilds container */
 				.${guildsWrapper}{
 					width: 30px;
+					z-index: 1001;
 				}
 				.${guildsWrapper}:hover{
 					width: 70px;
+					margin-right: -40px;
 				}
 			/* channels container */
 				.${channelClass}{
