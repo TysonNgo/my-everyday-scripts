@@ -89,7 +89,9 @@ javascript:(function(){
 			.message-group{
 				border: 0;
 			}
+			hr[class^=divider],
 			div[class^=divider] > div{
+				display: none !important;
 				background: none !important;
 			}
 
