@@ -9,9 +9,6 @@ javascript:(function(){
 	var style = document.createElement("style");
 	style.id = "discord_left_nav";
 	/* the container for the guild channels */
-	var channelClass = document.querySelector("div[class^=channel]").classList[0];
-	var guildsWrapper = document.querySelector("div[class^=guildsWrapper]").classList[0];
-	var guildInner = document.querySelector("div[class^=guildInner]").classList[0];
 	var css = document.createTextNode(`
 		/*
 		  shrinking/growing animation for left nav elements
@@ -19,9 +16,13 @@ javascript:(function(){
 		  - guild container
 		  - guild images
 		*/
-			.${channelClass},
-			.${guildsWrapper},
-			.${guildInner} a,
+			/* channels */
+			div[class^=channels-],
+			/* guilds */
+			div[class^=directionColumn] > div > div[class^=flex] > div[class^=wrapper-],
+			div[class^=wrapper-] > div[class^=scrollerWrap-],
+			div[class^=wrapper-] > div[class^=scrollerWrap-] > div > div[class^=container-],
+			div[class^=wrapper-] > div[class^=scrollerWrap-] > div > div[class^=container-] a,
 			div[class^=icon],
 			div[class^=guild]{
 				transition: width 0.5s, height 0.5s, padding 0.5s, margin 0.5s, background-size 0.5s;
@@ -29,30 +30,30 @@ javascript:(function(){
 			}
 
 		/* unread guild icon becomes white so it is more visible when the nav is small */
-			div[class*=unread] .${guildInner}{
+			div[class*=unread] div[class^=wrapper-]{
 				background:#8a8e94 !important;
 			}
 			div[class*=unread] a{
 				opacity: 0.5;
 			}
-
 		/* change guild container padding */
-			.${guildsWrapper} div[class^=guilds]{
+			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-]{
 				padding-left: 5px;
 			}
-			.${guildsWrapper}:hover div[class^=guilds]{
+			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-]:hover{
 				padding-left: 10px;
 			}
 
 		/* changes guild icon size */
-			div[class^=guild-] .${guildInner} a,
-			.${guildInner} a div[class^=icon],
-			div[class^=guild-]{
+			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container],
+			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] a,
+			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] a div[class^=icon]{
 				width: 20px; height: 20px;
 			}
-			.${guildsWrapper}:hover .${guildInner} a,
-			.${guildsWrapper}:hover .${guildInner} a div[class^=icon],
-			.${guildsWrapper}:hover div[class^=guild-]{
+
+			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container],
+			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] a,
+			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] a div[class^=icon]{
 				width: 50px; height: 50px;
 			}
 
@@ -63,21 +64,23 @@ javascript:(function(){
 
 		/* left nav resizers */
 			/* guilds container */
-				.${guildsWrapper}{
+				div > div[class^=flex] > div[class^=wrapper-],
+				div[class^=wrapper-] > div[class^=scrollerWrap-]{
 					width: 30px;
 					z-index: 1001;
 				}
-				.${guildsWrapper}:hover{
+				div > div[class^=flex] > div[class^=wrapper-]:hover,
+				div[class^=wrapper-] > div[class^=scrollerWrap-]:hover{
 					width: 70px;
 					margin-right: -40px;
 				}
 			/* channels container */
-				.${channelClass}{
+				div[class^=channels-]{
 					width: 30px;
 					opacity: 0.93;
 					z-index: 1000;
 				}
-				.${channelClass}:hover{
+				div[class^=channels-]:hover{
 					width: 240px;
 					margin-right: -210px;
 				}
