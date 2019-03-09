@@ -30,7 +30,7 @@ javascript:(function(){
 			}
 
 		/* unread guild icon becomes white so it is more visible when the nav is small */
-			div[class*=unread] div[class^=wrapper-]{
+			div[class*=unread] div[class^=wrapper-]:first-child{
 				background:#8a8e94 !important;
 			}
 			div[class*=unread] a{
