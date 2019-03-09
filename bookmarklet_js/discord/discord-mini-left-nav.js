@@ -47,13 +47,15 @@ javascript:(function(){
 		/* changes guild icon size */
 			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container],
 			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] a,
-			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] a div[class^=icon]{
+			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] a div[class^=icon],
+			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] div[class*=homeButton]{
 				width: 20px; height: 20px;
 			}
 
 			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container],
 			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] a,
-			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] a div[class^=icon]{
+			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] a div[class^=icon],
+			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] div[class*=homeButton]{
 				width: 50px; height: 50px;
 			}
 
