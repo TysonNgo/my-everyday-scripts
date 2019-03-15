@@ -53,7 +53,7 @@ javascript:(function(){
 		}
 	};
 	const config = { attributes: true, childList: true, subtree: true };
-	let serverList = document.querySelector('div[class^=channels-] div[class^=scroller][class*=systemPad][class*=scroller]');
+	let appRoot = document.querySelector('#app-mount');
 
 	let urlChange = function(){
 		let url = window.location.href;
@@ -63,8 +63,10 @@ javascript:(function(){
 					url = window.location.href;
 					chatObserver.disconnect();
 					let chat = getChatNode();
-					flattenChat(chat);
-					chatObserver.observe(chat, config);
+					if (chat){
+						flattenChat(chat);
+						chatObserver.observe(chat, config);
+					}
 				}
 			}
 		};
@@ -83,11 +85,13 @@ javascript:(function(){
 		}
 	};
 
-	let chat = getChatNode();
-	flattenChat(chat);
 	let chatObserver = new MutationObserver(chatChange);
-	chatObserver.observe(chat, config);
+	let chat = getChatNode();
+	if (chat){
+		flattenChat(chat);
+		chatObserver.observe(chat, config);	
+	}
 
 	let observer = new MutationObserver(urlChange());
-	observer.observe(serverList, config);
-})()
+	observer.observe(appRoot, config);
+})();
