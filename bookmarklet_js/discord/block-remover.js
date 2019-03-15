@@ -1,5 +1,26 @@
 javascript:(function(){
 	if (window.location.host !== 'discordapp.com') return alert('this script is used on "discordapp.com"');
+	/* injected css */
+	var style = document.createElement("style");
+	style.id = "discord_block_hider";
+	/* the container for the guild channels */
+	var css = document.createTextNode(`
+		/* hides blocked messages */
+			div[class^=messageGroupBlocked], div[class^=divider] > span{
+				display: none; padding: 0;
+			}
+			.message-group{
+				border: 0;
+			}
+			hr[class^=divider],
+			div[class^=divider] > div{
+				display: none !important;
+				background: none !important;
+			}
+
+		`); style.appendChild(css);
+	document.getElementsByTagName("head")[0].appendChild(style);
+
 	let getChatNode = function(){
 		return document.querySelector('#app-mount > div.app-19_DXt.platform-web > div > div.layers-3iHuyZ.vertical-V37hAW.flex-1O1GKY.directionColumn-35P_nr.spacer-1fA9zc > div > div > div.flex-1xMQg5.flex-1O1GKY.vertical-V37hAW.flex-1O1GKY.directionColumn-35P_nr.justifyStart-2NDFzi.alignStretch-DpGPf3.noWrap-3jynv6.base-3dtUhz > div.flex-1xMQg5.flex-1O1GKY.horizontal-1ae9ci.horizontal-2EEEnY.flex-1O1GKY.directionRow-3v3tfG.justifyStart-2NDFzi.alignStretch-DpGPf3.noWrap-3jynv6.spacer-29U_x8.firefoxFixScrollFlex-cnI2ix > div.chat-3bRxxu.firefoxFixScrollFlex-cnI2ix > div.content-yTz4x3.firefoxFixScrollFlex-cnI2ix > div > div > div > div');
 	};
