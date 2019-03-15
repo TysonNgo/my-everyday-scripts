@@ -22,32 +22,42 @@ javascript:(function(){
 	document.getElementsByTagName("head")[0].appendChild(style);
 
 	let getChatNode = function(){
-		return document.querySelector('#app-mount > div.app-19_DXt.platform-web > div > div.layers-3iHuyZ.vertical-V37hAW.flex-1O1GKY.directionColumn-35P_nr.spacer-1fA9zc > div > div > div.flex-1xMQg5.flex-1O1GKY.vertical-V37hAW.flex-1O1GKY.directionColumn-35P_nr.justifyStart-2NDFzi.alignStretch-DpGPf3.noWrap-3jynv6.base-3dtUhz > div.flex-1xMQg5.flex-1O1GKY.horizontal-1ae9ci.horizontal-2EEEnY.flex-1O1GKY.directionRow-3v3tfG.justifyStart-2NDFzi.alignStretch-DpGPf3.noWrap-3jynv6.spacer-29U_x8.firefoxFixScrollFlex-cnI2ix > div.chat-3bRxxu.firefoxFixScrollFlex-cnI2ix > div.content-yTz4x3.firefoxFixScrollFlex-cnI2ix > div > div > div > div');
+		return document.querySelector('div[class^=scroller-][class*=messages]');
 	};
 	let flattenChat = function(chatContainer){
 		let chat = chatContainer.querySelectorAll('div[class^=containerCozyBounded]');
-		for (let i = 0; i < chat.length-1; i++){
-			let first = chat[i];
-			let second = chat[i+1];
+		/* cozy mode */
+		if (chat){
+			for (let i = 0; i < chat.length-1; i++){
+				let first = chat[i];
+				let second = chat[i+1];
 
-			let headerFirst = first.children[0].children[0];
-			let headerSecond = second.children[0].children[0];
+				let headerFirst = first.children[0].children[0];
+				let headerSecond = second.children[0].children[0];
 
-			let aviFirst = headerFirst.querySelector('div[class^=image]').style.backgroundImage;
-			let aviSecond = headerSecond.querySelector('div[class^=image]').style.backgroundImage;
+				let aviFirst = headerFirst.querySelector('div[class^=image]').style.backgroundImage;
+				let aviSecond = headerSecond.querySelector('div[class^=image]').style.backgroundImage;
 
-			let nameFirst = headerFirst.querySelector('span[class^=username]').textContent;
-			let nameSecond = headerSecond.querySelector('span[class^=username]').textContent;
+				let nameFirst = headerFirst.querySelector('span[class^=username]').textContent;
+				let nameSecond = headerSecond.querySelector('span[class^=username]').textContent;
 
-			if (aviFirst === aviSecond && nameFirst === nameSecond){
-				headerSecond.style.display = 'none';
-				first.style.paddingBottom = 0;
-				second.style.paddingTop = 0;
+				if (aviFirst === aviSecond && nameFirst === nameSecond){
+					headerSecond.style.display = 'none';
+					first.style.paddingBottom = 0;
+					second.style.paddingTop = 0;
+				}
+			}
+		}
+		chat = chatContainer.querySelectorAll('div[class^=containerCompactBounded]');
+		/* compact mode */
+		if (chat){
+			for (let i = 0; i < chat.length-1; i++){
+				/* TODO */
 			}
 		}
 	};
 	const config = { attributes: true, childList: true, subtree: true };
-	let serverList = document.querySelector('#app-mount > div.app-19_DXt.platform-web > div > div.layers-3iHuyZ.vertical-V37hAW.flex-1O1GKY.directionColumn-35P_nr.spacer-1fA9zc > div > div > div.flex-1xMQg5.flex-1O1GKY.vertical-V37hAW.flex-1O1GKY.directionColumn-35P_nr.justifyStart-2NDFzi.alignStretch-DpGPf3.noWrap-3jynv6.base-3dtUhz > div.flex-1xMQg5.flex-1O1GKY.horizontal-1ae9ci.horizontal-2EEEnY.flex-1O1GKY.directionRow-3v3tfG.justifyStart-2NDFzi.alignStretch-DpGPf3.noWrap-3jynv6.spacer-29U_x8.firefoxFixScrollFlex-cnI2ix > div.channels-Ie2l6A.vertical-V37hAW.flex-1O1GKY.directionColumn-35P_nr > div.flex-1xMQg5.flex-1O1GKY.vertical-V37hAW.flex-1O1GKY.directionColumn-35P_nr.justifyStart-2NDFzi.alignStretch-DpGPf3.noWrap-3jynv6.container-PNkimc.firefoxFixScrollFlex-cnI2ix > div.scrollerWrap-2lJEkd.firefoxFixScrollFlex-cnI2ix.scrollerThemed-2oenus.themeGhostHairlineChannels-3G0x9_.scrollerFade-1Ijw5y > div');
+	let serverList = document.querySelector('div[class^=channels-] div[class^=scroller][class*=systemPad][class*=scroller]');
 
 	let urlChange = function(){
 		let url = window.location.href;
