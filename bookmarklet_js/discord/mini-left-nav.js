@@ -45,18 +45,32 @@ javascript:(function(){
 			}
 
 		/* changes guild icon size */
+			/* DM */
+			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] div[class^=wrapper][class*=small][class*=avatar][class*=avatarSmall],
+			/* guilds */
 			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container],
 			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] a,
 			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] a div[class^=icon],
+			/* home */
 			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] div[class*=homeButton]{
-				width: 20px; height: 20px;
+				width: 20px !important;
+				height: 20px !important;
 			}
 
+			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] div[class^=wrapper][class*=small][class*=avatar][class*=avatarSmall],
 			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container],
 			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] a,
 			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] a div[class^=icon],
 			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] div[class*=homeButton]{
-				width: 50px; height: 50px;
+				width: 50px !important;
+				height: 50px !important;
+			}
+
+			/* ping number */
+			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] div[class*=badge]{
+				bottom: -2px !important;
+				right: -2px !important;
+				top: auto !important;
 			}
 
 		/* fits guild icon image */
