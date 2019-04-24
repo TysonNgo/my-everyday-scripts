@@ -29,13 +29,6 @@ javascript:(function(){
 				transition-timing-function: ease-out;
 			}
 
-		/* unread guild icon becomes white so it is more visible when the nav is small */
-			div[class*=unread] div[class^=wrapper-]:first-child{
-				background:#8a8e94 !important;
-			}
-			div[class*=unread] a{
-				opacity: 0.5;
-			}
 		/* change guild container padding */
 			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-]{
 				padding-left: 5px;
@@ -45,37 +38,48 @@ javascript:(function(){
 			}
 
 		/* changes guild icon size */
-			/* DM */
-			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] div[class^=wrapper][class*=small][class*=avatar][class*=avatarSmall],
-			/* guilds */
-			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container],
-			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] a,
-			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] a div[class^=icon],
-			/* home */
-			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] div[class*=homeButton]{
+			/* unread guild icon becomes white so it is more visible when the nav is small */
+			div[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] div[class^=pill] span[style*="opacity: 0.7;"]{
+				background:#8a8e94 !important;
+				opcaity: 0.5 !important;
+			}
+			div[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] div[class^=pill],
+			div[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] div[class^=pill] span[style*="opacity: 0.7;"]{
+				width:100%;
+				height:100% !important;
+				z-index: 1;
+				padding-left: 1px;
+				border-radius: 50%;
+			}
+			div[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem]:hover div[class^=pill]{
+				z-index:-1;
+				width:0;
+				height:0;
+				pointer-events:none;
+			}
+
+
+
+			div[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem]:not(:nth-child(2)),
+			div[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] > div[class^=blob] > div[class^=wrapper],
+			div[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] > div[class^=blob] svg{
 				width: 20px !important;
 				height: 20px !important;
 			}
 
-			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] div[class^=wrapper][class*=small][class*=avatar][class*=avatarSmall],
-			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container],
-			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] a,
-			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] a div[class^=icon],
-			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover > div[class^=scroller-] div[class^=container] div[class*=homeButton]{
-				width: 50px !important;
-				height: 50px !important;
+			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover div[class^=listItem]:not(:nth-child(2)),
+			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover div[class^=listItem] > div[class^=blob] > div[class^=wrapper],
+			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover div[class^=listItem] > div[class^=blob] svg{
+				width: 48px !important;
+				height: 48px !important;
 			}
 
 			/* ping number */
-			div[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-] div[class^=container] div[class*=badge]{
-				bottom: -2px !important;
-				right: -2px !important;
-				top: auto !important;
+			div[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] div[class^=lowerBadge]{
+				position: relative;
 			}
-
-		/* fits guild icon image */
-			.guilds-wrapper .guilds .guild .guild-icon{
-				background-size: 100%;
+			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover div[class^=listItem] div[class^=lowerBadge]{
+				position: absolute;
 			}
 
 		/* left nav resizers */
