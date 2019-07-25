@@ -31,8 +31,8 @@ javascript:(function(){
 				let headerFirst = first.children[0].children[0];
 				let headerSecond = second.children[0].children[0];
 
-				let aviFirst = headerFirst.querySelector('div[class^=image]').style.backgroundImage;
-				let aviSecond = headerSecond.querySelector('div[class^=image]').style.backgroundImage;
+				let aviFirst = headerFirst.querySelector('div[class^=avatar] img').src;
+				let aviSecond = headerSecond.querySelector('div[class^=avatar] img').src;
 
 				let nameFirst = headerFirst.querySelector('span[class^=username]').textContent;
 				let nameSecond = headerSecond.querySelector('span[class^=username]').textContent;
