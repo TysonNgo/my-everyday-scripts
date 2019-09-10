@@ -24,8 +24,10 @@ javascript:(function(){
 			div[class^=wrapper-] > div[class^=scrollerWrap-] > div > div[class^=container-],
 			div[class^=wrapper-] > div[class^=scrollerWrap-] > div > div[class^=container-] a,
 			div[class^=icon],
+			div[class^=sidebar],
+			div[class^=base],
 			div[class^=guild]{
-				transition: width 0.5s, height 0.5s, padding 0.5s, margin 0.5s, background-size 0.5s;
+				transition: left 0.5s, width 0.5s, height 0.5s, padding 0.5s, margin 0.5s, background-size 0.5s;
 				transition-timing-function: ease-out;
 			}
 
@@ -58,8 +60,7 @@ javascript:(function(){
 				pointer-events:none;
 			}
 
-
-
+			span[class^=expandedFolderBackground] + div div[class^=wrapper],
 			div[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem]:not(:nth-child(2)),
 			div[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] > div[class^=blob] > div[class^=wrapper],
 			div[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] > div[class^=blob] svg{
@@ -67,6 +68,7 @@ javascript:(function(){
 				height: 20px !important;
 			}
 
+			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover span[class^=expandedFolderBackground] + div div[class^=wrapper],
 			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover div[class^=listItem]:not(:nth-child(2)),
 			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover div[class^=listItem] > div[class^=blob] > div[class^=wrapper],
 			div[class^=wrapper-] > div[class^=scrollerWrap-]:hover div[class^=listItem] > div[class^=blob] svg{
@@ -95,12 +97,18 @@ javascript:(function(){
 					margin-right: -40px;
 				}
 			/* channels container */
-				div[class^=channels-]{
+				div[class^=base]{
+					left: 30px;
+				}
+				div[class^=wrapper]:hover + div[class^=base]{
+					left: 70px;
+				}
+				div[class^=sidebar]{
 					width: 30px;
 					opacity: 0.93;
 					z-index: 1000;
 				}
-				div[class^=channels-]:hover{
+				div[class^=sidebar]:hover{
 					width: 240px;
 					margin-right: -210px;
 				}
