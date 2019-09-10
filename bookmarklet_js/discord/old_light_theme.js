@@ -13,11 +13,12 @@ javascript:(function(){
 		h2[class^=headerCozyMeta] span[class^=username]{
 			font-weight: 500;
 		}
-		/* body text color */
+		/* body text */
 		div[class^=markup]{
 			color: #747f8d;
+			font-size: .9375rem;
+			line-height: 1.3;
 		}
-
 		/* body text weight */
 		div[class^=markup] *{
 		    font-weight: 400;
