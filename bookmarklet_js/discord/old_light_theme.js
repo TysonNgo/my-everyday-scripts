@@ -33,7 +33,7 @@ javascript:(function(){
 
 		/* default icon color */
 		div[class^=sidebar] svg > g,
-		div[class^=sidebar] svg > path{
+		div[class^=sidebar] svg > path:not([class^=strikethrough]){
 			color: #8e9297;
 		}
 
@@ -92,10 +92,6 @@ javascript:(function(){
 			/* username text color */
 			div[class^=sidebar] > div[class^=panels] div[class^=container] div[class*=usernameContainer] > div{
 				color: #fff;
-			}
-		    /* icon colors */
-			div[class^=sidebar] > div[class^=panels] div[class^=container] button svg > path:not([class^=strikethrough]){
-				fill: #8e9297;
 			}
 
 		/* default server icon color */
