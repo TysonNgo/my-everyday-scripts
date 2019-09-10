@@ -31,33 +31,42 @@ javascript:(function(){
 		    background: #2f3136;
 		}
 
-		/* selected channel text color */
-		div[class*=modeSelected] > div > div[class^=name],
-		div[class*=modeSelected]:hover div[class^=name],
-		/* server name text color */
-		header > h1[class^=name],
-		header > svg > g{
-		    color: #fff;
-		}
-
-		/* muted channel text color */
-		div[class*=modeMuted] > div > div[class^=name],
-		/* muted channel # symbol color */
-		div[class*=modeMuted] > div > svg > path{
-			color: #4f545c;
-			fill: #4f545c !important;
-		}
-
 		/* default icon color */
 		div[class^=sidebar] svg > g,
 		div[class^=sidebar] svg > path{
 			color: #8e9297;
 		}
 
-		/* unread channel text color */
-		div[class*=modeUnread] > div > div[class^=name]{
-			color: #fff;
-		}
+		/* channel text */
+			/* read channel text color */
+			div[class^=iconVisibility] div[class^=name]{
+				color: #8e9297;
+			}
+			/* channel hover text color */
+			div[class^=containerDefault]:not([class*=selected]) div[class^=iconVisibility]:not([class*=modeUnread]):hover div[class^=name]{
+				color: #dcddde;
+			}
+			/* unread channel text color */
+			div[class*=modeUnread] > div > div[class^=name],
+			/* unread channel hover text color */
+			div[class*=modeUnread]:hover div[class^=name]{
+				color: #fff;
+			}
+			/* muted channel text color */
+			div[class*=modeMuted] > div > div[class^=name],
+			/* muted channel # symbol color */
+			div[class*=modeMuted] > div > svg > path{
+				color: #4f545c;
+				fill: #4f545c !important;
+			}
+			/* selected channel text color */
+			div[class*=modeSelected] > div > div[class^=name],
+			div[class*=modeSelected]:hover div[class^=name],
+			/* server name text color */
+			header > h1[class^=name],
+			header > svg > g{
+			    color: #fff;
+			}
 
 		/* server nav background color */
 		div[class^=wrapper] > div[class^=scrollerWrap],
@@ -120,11 +129,6 @@ javascript:(function(){
 		/* channel hover highlighting */
 		div[class^=containerDefault]:not([class*=selected]) div[class^=iconVisibility]:hover div[class^=content]{
 			background: #292b2f;
-		}
-
-		/* channel hover text color */
-		div[class^=containerDefault]:not([class*=selected]) div[class^=iconVisibility]:hover div[class^=name]{
-			color: #dcddde;
 		}
 		`); style.appendChild(css);
 	document.getElementsByTagName("head")[0].appendChild(style);
