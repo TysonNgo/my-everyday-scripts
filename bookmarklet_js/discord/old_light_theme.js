@@ -99,9 +99,22 @@ javascript:(function(){
 			}
 
 		/* default server icon color */
-		div[class^=blobContainer] > div > svg > foreignObject > a > div{
+		div[class^=blobContainer] > div > svg > foreignObject > a > div,
+		/* folder icon color */
+		div > svg > foreignObject > div[class^=folder],
+		span[class^=expandedFolderBackground]{
 			color: #b9bbbe;
 		    background: #2f3136;
+		}
+		/* add server, server discovery, download apps button color*/
+		div[class^=circleButtonMask]:not(:hover) > svg > foreignObject > div[class^=circleIconButton]{
+		    background: #2f3136;
+		}
+
+		/* folder icon hover color */
+		div[class^=wrapper]:hover > svg > foreignObject > div[class^=folder],
+		div[class^=wrapper]:hover > span[class^=expandedFolderBackground]{
+			background: #40444b;
 		}
 
 		/* unread markers */
