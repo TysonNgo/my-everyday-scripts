@@ -9,11 +9,20 @@ javascript:(function(){
 	style.id = "discord_old_light_theme";
 	/* the container for the guild channels */
 	var css = document.createTextNode(`
-		/* body text */
+		/* body username text weight */
+		h2[class^=headerCozyMeta] span[class^=username]{
+			font-weight: 500;
+		}
+		/* body text color */
 		div[class^=markup]{
 			color: #747f8d;
+		}
+
+		/* body text weight */
+		div[class^=markup] *{
 		    font-weight: 400;
 		}
+
 		/* channel nav background color */
 		div[class^=base] > div > div[class^=sidebar],
 		div[class^=base] > div > div[class^=sidebar] > div[class^=container],
