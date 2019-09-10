@@ -39,7 +39,8 @@ javascript:(function(){
 		}
 
 		/* default icon color */
-		div[class^=sidebar] svg > g{
+		div[class^=sidebar] svg > g,
+		div[class^=sidebar] svg > path{
 			color: #8e9297;
 		}
 
