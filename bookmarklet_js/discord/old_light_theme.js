@@ -27,7 +27,8 @@ javascript:(function(){
 		/* channel nav background color */
 		div[class^=base] > div > div[class^=sidebar],
 		div[class^=base] > div > div[class^=sidebar] > div[class^=container],
-		div[class^=privateChannels]{
+		div[class^=privateChannels],
+		div[class^=privateChannels] div[class^=scroller]{
 		    background: #2f3136;
 		}
 
@@ -69,8 +70,8 @@ javascript:(function(){
 			}
 
 		/* server nav background color */
-		div[class^=wrapper][class^=guilds],
 		div[class^=wrapper] > div[class^=scrollerWrap],
+		div[class^=wrapper] > div[class^=scrollerWrap] div[class^=scroller],
 		/* search bar background color in /activity */
 		div[class^=privateChannels] div[class^=searchBarComponent]{
 		    background: #202225;
