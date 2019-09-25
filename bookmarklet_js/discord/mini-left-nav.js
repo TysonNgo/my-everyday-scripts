@@ -20,6 +20,7 @@ javascript:(function(){
 			div[class^=channels-],
 			/* guilds */
 			div[class^=directionColumn] > div > div[class^=flex] > div[class^=wrapper-],
+			div[class^=wrapper-][class^=guilds],
 			div[class^=wrapper-] > div[class^=scrollerWrap-],
 			div[class^=wrapper-] > div[class^=scrollerWrap-] > div > div[class^=container-],
 			div[class^=wrapper-] > div[class^=scrollerWrap-] > div > div[class^=container-] a,
@@ -97,9 +98,11 @@ javascript:(function(){
 					margin-right: -40px;
 				}
 			/* channels container */
+				div[class^=wrapper-][class^=guilds],
 				div[class^=base]{
 					left: 30px;
 				}
+				div[class^=wrapper-][class^=guilds]:hover,
 				div[class^=wrapper]:hover + div[class^=base]{
 					left: 70px;
 				}
