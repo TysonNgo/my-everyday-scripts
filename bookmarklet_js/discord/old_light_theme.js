@@ -69,6 +69,7 @@ javascript:(function(){
 			}
 
 		/* server nav background color */
+		div[class^=wrapper][class^=guilds],
 		div[class^=wrapper] > div[class^=scrollerWrap],
 		/* search bar background color in /activity */
 		div[class^=privateChannels] div[class^=searchBarComponent]{
