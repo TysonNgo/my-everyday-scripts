@@ -9,6 +9,9 @@ javascript:(function(){
 	style.id = "discord_old_light_theme";
 	/* the container for the guild channels */
 	var css = document.createTextNode(`
+		.theme-light{
+			--background-tertiary: #2f3136;
+		}
 		/* body username text weight */
 		h2[class^=headerCozyMeta] span[class^=username]{
 			font-weight: 500;
