@@ -1,5 +1,5 @@
 javascript:(function(){
-	if (window.location.host !== 'discordapp.com') return alert('this script is used on "discordapp.com"');
+	if (window.location.host !== 'discord.com') return alert('this script is used on "discordapp.com"');
 	/* injected css */
 	var style = document.createElement("style");
 	style.id = "discord_block_hider";
