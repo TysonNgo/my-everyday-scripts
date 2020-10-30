@@ -3,10 +3,10 @@ javascript:(function(){
 	var style = document.createElement("style");
 	style.id = "isolate_msg";
 	var css = document.createTextNode(`
-		#globalContainer, #pagelet_bluebar{
+		div[data-pagelet=page]{
 			display:none;
 		}
-		#js_h2, ._1ia._2sz2{
+		div[data-pagelet=ChatTab] > div[data-visualcompletion=ignore-dynamic] > div{
 			height: 100vh;
 		}`);
 	style.appendChild(css); document.getElementsByTagName("head")[0].appendChild(style);
