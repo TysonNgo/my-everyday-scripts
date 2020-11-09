@@ -32,57 +32,27 @@ javascript:(function(){
 				transition-timing-function: ease-out;
 			}
 
-		/* change guild container padding */
-			nav[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-]{
-				padding-left: 5px;
-			}
-			nav[class^=wrapper-] > div[class^=scrollerWrap-] > div[class^=scroller-]:hover{
-				padding-left: 10px;
-			}
-
 		/* changes guild icon size */
-			/* unread guild icon becomes white so it is more visible when the nav is small */
-			nav[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] div[class^=pill] span[style*="opacity: 0.7;"]{
-				background:#8a8e94 !important;
-				opcaity: 0.5 !important;
+			/* adjust divider spacing */
+			nav[class^=wrapper-] div[class^=scroller-] div[class^=tutorialContainer-] + div[class^=listItem-]{
+				margin: -10px;
 			}
-			nav[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] div[class^=pill],
-			nav[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] div[class^=pill] span[style*="opacity: 0.7;"]{
-				width:100%;
-				height:100% !important;
-				z-index: 1;
-				padding-left: 1px;
-				border-radius: 50%;
-			}
-			nav[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem]:hover div[class^=pill]{
-				z-index:-1;
-				width:0;
-				height:0;
-				pointer-events:none;
+			nav[class^=wrapper-] div[class^=scroller-]:hover div[class^=tutorialContainer-] + div[class^=listItem-]{
+				margin: auto;
 			}
 
-			span[class^=expandedFolderBackground] + div div[class^=wrapper],
-			nav[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem]:not(:nth-child(2)),
-			nav[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] > div[class^=blob] > div[class^=wrapper],
-			nav[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] > div[class^=blob] svg{
-				width: 20px !important;
+			/* adjust server icon size */
+			nav[class^=wrapper-] div[class^=scroller-] div[class^=listItem-]{
 				height: 20px !important;
 			}
-
-			nav[class^=wrapper-] > div[class^=scrollerWrap-]:hover span[class^=expandedFolderBackground] + div div[class^=wrapper],
-			nav[class^=wrapper-] > div[class^=scrollerWrap-]:hover div[class^=listItem]:not(:nth-child(2)),
-			nav[class^=wrapper-] > div[class^=scrollerWrap-]:hover div[class^=listItem] > div[class^=blob] > div[class^=wrapper],
-			nav[class^=wrapper-] > div[class^=scrollerWrap-]:hover div[class^=listItem] > div[class^=blob] svg{
+			nav[class^=wrapper-] div[class^=scroller-]:hover div[class^=listItem-]{
+				height: auto !important;
+			}
+			nav[class^=wrapper-] div[class^=scroller-] div[class^=listItem-] svg[class=svg-1X37T1]{
+				width: 20px !important;
+			}
+			nav[class^=wrapper-] div[class^=scroller-]:hover div[class^=listItem-] svg[class=svg-1X37T1]{
 				width: 48px !important;
-				height: 48px !important;
-			}
-
-			/* ping number */
-			nav[class^=wrapper-] > div[class^=scrollerWrap-] div[class^=listItem] div[class^=lowerBadge]{
-				position: relative;
-			}
-			nav[class^=wrapper-] > div[class^=scrollerWrap-]:hover div[class^=listItem] div[class^=lowerBadge]{
-				position: absolute;
 			}
 
 		/* left nav resizers */
