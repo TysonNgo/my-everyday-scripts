@@ -1,5 +1,5 @@
 javascript:(function(){ 
-  if (window.location.host !== 'discord.com') return alert('this script is used on "discordapp.com"');
+  if (window.location.host !== 'discord.com') return alert('this script is used on "discord.com"');
 	try{
 		document.getElementById("discord_left_nav").remove();
 		document.getElementById("discord_left_nav_toggle").remove();
