@@ -6,7 +6,10 @@ javascript:(function(){
 
     if (!hasBet && canBet){
       if (document.getElementById('balance').classList.contains('purpletext')){
-        document.getElementById('wager').value = "1150";
+        let tourneyBalance = 1300;
+        let currentBalance = parseInt(document.getElementById('balance').textContent.replace(',',''));
+        let wager = currentBalance < tourneyBalance * 2 ? currentBalance : tourneyBalance;
+        document.getElementById('wager').value = wager;
       } else {
         document.getElementById('wager').value = "50";
       }
