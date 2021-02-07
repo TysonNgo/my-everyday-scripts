@@ -79,4 +79,4 @@ class SB():
 	def get_tournament_balance(self):
 		if self.get_mode() == SB.MODE_TOURNAMENT:
 			return int(re.findall('<span class="greentext"> \$([\d,]+)', self.bank_html)[0].replace(',',''))
-		return None
+		return 1
