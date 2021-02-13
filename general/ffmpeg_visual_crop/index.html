@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	.container *{
+		display:block;
+		margin: .25em auto;
+		font-size: 1.2em;
+	}
+	.config-container{
+		width: 700px;
+	}
+	.video-container{
+		position: relative;
+		width: 640px;
+		height: 360px;
+	}
+	#crop-box{
+		position: absolute;
+		background: rgba(255,255,255,.2);
+		border: 3px solid rgba(255,0,0,0.6);
+		margin: 0;
+		padding: 0;
+		transform: translate(-3px, -3px);
+		top: 0;
+		left: 0;
+	}
+	input{
+		width: 100%;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="video-container">
+			<video id="video" height="360" width="640" controls></video>
+			<div id="crop-box"></div>
+		</div>
+		<div class="config-container">
+			<input id="dir" type="file" accept="video/*" />
+			<label>output width<input id="w" type="number" value=0></label>
+			<label>output height<input id="h" type="number" value=0></label>
+			<label>x<input id="x" type="number" value=0></label>
+			<label>y<input id="y" type="number" value=0></label>
+			<textarea id="ffmpeg-filter" readonly></textarea>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var src;
+		var vHeight;
+		var vWidth;
+		var vContainer = document.getElementById('video');
+		var vContainerHeight = vContainer.height;
+		var vContainerWidth = vContainer.width;
+		document.getElementById('dir').onchange = function(){
+			document.getElementById('video').src = window.URL.createObjectURL(this.files[0]);
+		}
+		document.getElementById('w').oninput = function(){
+			document.getElementById('crop-box').style.width = (this.value * vContainerWidth/vWidth)+"px";
+		}
+		document.getElementById('h').oninput = function(){
+			document.getElementById('crop-box').style.height = (this.value * vContainerHeight/vHeight)+"px";
+		}
+		document.getElementById('x').oninput = function(){
+			document.getElementById('crop-box').style.left = (this.value * vContainerWidth/vWidth)+"px";
+		}
+		document.getElementById('y').oninput = function(){
+			document.getElementById('crop-box').style.top = (this.value * vContainerHeight/vHeight)+"px";
+		}
+
+		function updateFFMPEG_filter(){
+			var w = document.getElementById('w').value;
+			var h = document.getElementById('h').value;
+			var x = document.getElementById('x').value;
+			var y = document.getElementById('y').value;
+			document.getElementById('ffmpeg-filter').value = `-vf "crop=${w}:${h}:${x}:${y}"`;
+			console.log(src);
+		}
+		document.getElementById('w').addEventListener('input', updateFFMPEG_filter);
+		document.getElementById('h').addEventListener('input', updateFFMPEG_filter);
+		document.getElementById('x').addEventListener('input', updateFFMPEG_filter);
+		document.getElementById('y').addEventListener('input', updateFFMPEG_filter);
+
+		document.getElementById('video').onloadedmetadata = function(e){
+			vWidth = e.target.videoWidth;
+			vHeight = e.target.videoHeight;
+			src = e.target.src;
+		}
+	</script>
+</body>
+</html>
