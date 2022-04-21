@@ -10,7 +10,8 @@ javascript:(function(){
 	style.id =  id;
 
 	var css = document.createTextNode(`
-		div.InjectLayout-sc-588ddc-0.dizzGc > div > div.Layout-sc-nxg1ff-0{
+		/*div.InjectLayout-sc-588ddc-0.dizzGc > div > div.Layout-sc-nxg1ff-0*/
+                section > div > div[class^=InjectLayout-] > div > div[class^=Layout-]{
 			display:none;
 		}`);
 	style.appendChild(css);
