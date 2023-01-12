@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		video{
+			width: 80%;
+			height: auto;
+			background: black;
+		}
+	</style>
+</head>
+<body>
+<video id="video" controls></video>
+<input id="file" type="file" accept="video/*" />
+
+<input type="text" id="start" readonly /><button id="start-button">Set Start</button>
+<input type="text" id="end" readonly /><button id="end-button">Set End</button>
+<textarea id="ffmpeg"></textarea>
+
+<script type="text/javascript">
+		var src;
+		var video = document.getElementById('video');
+		document.getElementById('file').onchange = function(){
+			document.getElementById('video').src = window.URL.createObjectURL(this.files[0]);
+		}
+		function click(elemName){
+			return function(e){
+				let hms = new Date(video.currentTime*1000).toISOString().substr(11, 8);
+				document.getElementById(elemName).value = hms;
+				updateFFMPEG_filter();
+			}
+		}
+
+		document.getElementById('start-button').onclick = click('start');
+		document.getElementById('end-button').onclick = click('end');
+
+		function updateFFMPEG_filter(){
+			let start = document.getElementById('start').value;
+			let end = document.getElementById('end').value;
+			document.getElementById('ffmpeg').value = `-ss ${start} -to ${end} -c:a copy`;
+			console.log(src);
+		}
+
+		document.getElementById('video').onloadedmetadata = function(e){
+			src = e.target.src;
+		}
+</script>
+
+</body>
+</html>

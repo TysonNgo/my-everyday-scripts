@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		html,body{
+			padding: 0;
+			margin: 0;
+			color: white;
+		}
+		.container{
+			width: 100vw;
+			height: 100vh;
+			background: #383838;
+			display: flex;
+			flex-direction: row;
+		}
+		.video-container{
+			position: relative;
+			width: 66vw;
+			background: #444;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		#video{
+			width: 100%;
+			height: auto;
+			background: #000;
+		}
+		#select-video{
+			font-size: 1.5em;
+			margin-top: 1.5em;
+		}
+		.nav{
+			position: relative;
+			width:33vw;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		#clips{
+			color: black;
+			background: rgba(255,255,255,.5);
+			height: 30vw;
+			width: 100%;
+			overflow-y: scroll;
+		}
+		#add-clip{
+			position: absolute;
+			bottom: 0;
+			left: calc(1em + 2px);
+			height: 2.5em;
+			width: calc(100% - 2em - 4px);
+		}
+		.clip{
+			background: #fafafa;
+			position: relative;
+			height: 7.5em;
+			width: 100%;
+		}
+		.clip:nth-child(even){
+			background: #ccf;
+		}
+		.nav-entry{
+			position: relative;
+			width: calc(100% - 2em);
+			padding: 1em;
+		}
+		#output-text{
+			height: 10vw;
+		}
+		textarea{
+			width: 100%;
+			resize: none;
+		}
+		.start-end{
+			padding: 1em 0;
+			width: calc(100% - 3em);
+			padding-right: 3em;
+			padding-left: 1em;
+		}
+		.start-end div{
+			width: 44%;
+			display: inline-block;
+		}
+		.start-end label{
+			display: block;
+		}
+		.clip-name{
+			margin: 1em 0;
+			width: 26em !important;
+		}
+		.start-end input{
+			width: 4.5em;
+		}
+		.remove{
+			position: absolute;
+			width: 3em;
+			top:0;
+			right: 0;
+			height: 100%;
+		}
+		.remove:hover{
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="video-container">
+			<video id="video" controls></video>
+			<input type="file" id="select-video" accept="video/*" />
+		</div>
+		<div class="nav">
+			<div class="nav-entry">
+				<div id="clips">
+					<!--
+					<div class="clip">
+						<div class="start-end">
+							<div>
+								<label>Start</label>
+								<input type="text"/>
+								<button>set</button>
+								<button>jump</button>
+							</div>
+							<div>
+								<label>End</label>
+								<input type="text"/>
+								<button>set</button>
+								<button>jump</button>
+							</div>
+							<input placeholder="Clip name" type="text" class="clip-name" />
+						</div>
+						<button class="remove">X</button>
+					</div>
+					-->
+				</div>
+				<button id="add-clip">+</button>
+			</div>
+			<div class="nav-entry">
+				<label>Output</label>
+				<textarea id="output-text"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		const selectVideo = document.querySelector('#select-video');
+		const video = document.querySelector('#video');
+		const addClip = document.querySelector('#add-clip');
+		const clips = document.querySelector('#clips');
+		const outputText = document.querySelector('#output-text');
+
+		function s2HHMMSS(s){
+			var m = Math.floor(s/60);
+			s %= 60;
+			var h = Math.floor(m/60);
+			m %= 60;
+			s = Math.floor(s);
+
+			return ''+
+			`${(h+'').padStart(2, '0')}:`+
+			`${(m+'').padStart(2, '0')}:`+
+			`${(s+'').padStart(2, '0')}`;
+		}
+		function HHMMSS2S(hhmmss){
+			const hhmmssRe = /^(\d+):(\d+):(\d+)$/;
+			if (!hhmmss.test(hhmmss)) return 0;
+			hhmmss = hhmmssRe.exec(hhmmss);
+			h = parseInt(hhmmss[1]);
+			m = parseInt(hhmmss[2]);
+			s = parseInt(hhmmss[3]);
+
+			return h*60*60 + m*60 + s;
+		}
+		function updateOutput(){
+			var outputStr = 'python3 ffmpeg_clips.py '
+			clips.querySelectorAll('.clip').forEach(clip => {
+				const name = clip.querySelector('.clip-name').value;
+				const start = clip.querySelector('.start-end div:nth-child(1) input').value;
+				const end = clip.querySelector('.start-end div:nth-child(2) input').value;
+				outputStr += `"start=${start};end=${end};name=${name}" `
+			})
+			outputText.value = outputStr;
+		}
+
+		selectVideo.onchange = function(){
+			video.src = window.URL.createObjectURL(this.files[0]);
+		}
+
+		video.onloadedmetadata = e => {
+			src = e.target.src;
+		}
+
+		addClip.onclick = e => {
+			function removeClip(e){
+				e.target.parentNode.remove();
+				updateOutput();
+			}
+			function setTime(e){
+				var hhmmss = s2HHMMSS(video.currentTime);
+				e.target.parentNode.querySelector('input').value = hhmmss;
+				updateOutput();
+			}
+			function jumpTime(e){
+				var s = HHMMSS2S(e.target.parentNode.querySelector('input').value);
+				video.currentTime = s;
+			}
+
+			const clip = document.createElement('div');
+			clip.classList.add('clip');
+			const startEnd = document.createElement('div');
+			startEnd.classList.add('start-end');
+
+			const start = document.createElement('div');
+			const startLabel = document.createElement('label');
+			startLabel.innerText = 'Start';
+			const startTimeInput = document.createElement('input');
+			startTimeInput.type = 'text';
+			const startSetButton = document.createElement('button');
+			startSetButton.innerText = 'set';
+			startSetButton.onclick = setTime;
+			const startJumpButton = document.createElement('button');
+			startJumpButton.innerText = 'jump';
+			startJumpButton.onclick = jumpTime;
+
+			const end = document.createElement('div');
+			const endLabel = document.createElement('label');
+			endLabel.innerText = 'End';
+			const endTimeInput = document.createElement('input');
+			endTimeInput.type = 'text';
+			const endSetButton = document.createElement('button');
+			endSetButton.innerText = 'set';
+			endSetButton.onclick = setTime;
+			const endJumpButton = document.createElement('button');
+			endJumpButton.innerText = 'jump';
+			endJumpButton.onclick = jumpTime;
+
+			const clipName = document.createElement('input');
+			clipName.type = 'text';
+			clipName.placeholder = 'Clip name';
+			clipName.classList.add('clip-name');
+			clipName.onchange = updateOutput;
+
+			const remove = document.createElement('button');
+			remove.classList.add('remove');
+			remove.innerText = 'X';
+			remove.onclick = removeClip;
+
+			start.appendChild(startLabel);
+			start.appendChild(startTimeInput);
+			start.appendChild(startSetButton);
+			start.appendChild(startJumpButton);
+
+			end.appendChild(endLabel);
+			end.appendChild(endTimeInput);
+			end.appendChild(endSetButton);
+			end.appendChild(endJumpButton);
+
+			startEnd.appendChild(start);
+			startEnd.appendChild(end);
+			startEnd.appendChild(clipName);
+
+			clip.appendChild(startEnd);
+			clip.appendChild(remove);
+
+			clips.appendChild(clip);
+		}
+	</script>
+</body>
+</html>
