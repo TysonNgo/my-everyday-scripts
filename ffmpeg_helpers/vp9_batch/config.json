@@ -1,0 +1,7 @@
+{
+	"crf": "30",
+	"video_bitrate": null,
+	"audio_bitrate": null,
+	"2pass": false,
+	"ffmpeg_instances": 3
+}
